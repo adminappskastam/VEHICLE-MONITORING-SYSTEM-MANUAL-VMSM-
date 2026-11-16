@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "VehicleLog": {
+      "title": "VehicleLog",
+      "description": "Rekod keluar atau masuk kenderaan di kaunter VMS IN (Booth 5-10) dan VMS OUT (Booth 1-4).",
+      "type": "object",
+      "properties": {
+        "direction": {
+          "type": "string",
+          "enum": ["IN", "OUT"],
+          "description": "Arah pergerakan kenderaan: IN atau OUT."
+        },
+        "boothNo": {
+          "type": "string",
+          "enum": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+          "description": "Nombor booth: 5-10 untuk VMS IN, 1-4 untuk VMS OUT."
+        },
+        "plateNo": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "description": "Nombor pendaftaran kenderaan yang telah diekstrak."
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Catatan tambahan pas kenderaan (cth. 1W) atau kosong jika tiada."
+        },
+        "eventTimestamp": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 40,
+          "description": "Tarikh dan masa masuk/keluar dalam format ISO 8601 yang boleh disunting."
+        },
+        "officerName": {
+          "type": "string",
+          "maxLength": 160,
+          "description": "Nama penuh pegawai yang merekodkan transaksi kenderaan."
+        },
+        "createdBy": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "description": "UID pegawai yang merekodkan data."
+        },
+        "createdByEmail": {
+          "type": "string",
+          "maxLength": 160,
+          "description": "E-mel pegawai yang merekodkan data."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Cap masa pelayan semasa rekod dicipta."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Cap masa pelayan semasa rekod dikemas kini."
+        }
+      },
+      "required": [
+        "direction",
+        "boothNo",
+        "plateNo",
+        "notes",
+        "eventTimestamp",
+        "officerName",
+        "createdBy",
+        "createdByEmail",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/vehicleLogs/{logId}": {
+      "schema": {
+        "$ref": "#/entities/VehicleLog"
+      },
+      "description": "Koleksi rekod keluar masuk kenderaan bagi VMS IN dan VMS OUT."
+    }
+  }
+}

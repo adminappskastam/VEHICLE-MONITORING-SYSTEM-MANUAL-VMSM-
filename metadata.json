@@ -1,0 +1,6 @@
+{
+  "name": "Vehicle Monitoring System (VMS) Manual",
+  "description": "Sistem rekod keluar masuk kenderaan (VMS IN & VMS OUT) serta papan pemuka statistik harian dan penjanaan laporan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

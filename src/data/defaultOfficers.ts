@@ -1,0 +1,173 @@
+import { OfficerRole } from '../types/vms';
+
+export interface DefaultOfficerSeed {
+  id: string;
+  fullName: string;
+  grade: string;
+  badgeNo: string;
+  email: string;
+  role: OfficerRole;
+}
+
+export const DEFAULT_OFFICERS: DefaultOfficerSeed[] = [
+  {
+    id: 'off_admin_kastam',
+    fullName: 'ADMIN VMSM (PENTADBIR SISTEM)',
+    grade: 'PENTADBIR SISTEM',
+    badgeNo: '',
+    email: 'admin.apps.kastam@gmail.com',
+    role: 'ADMIN',
+  },
+  {
+    id: 'off_01',
+    fullName: 'DOEHAILEE BIN BUJID',
+    grade: 'PENOLONG PENGARAH KASTAM WK10',
+    badgeNo: '',
+    email: 'doehailee.bujid@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_02',
+    fullName: 'PATRICK ANAK NUING',
+    grade: 'PENGUASA KASTAM WK9',
+    badgeNo: '',
+    email: 'patrick.nuing@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_03',
+    fullName: 'DAYANG HILFEE SIQDIQQA BT MOSTALI',
+    grade: 'PENOLONG PENGUASA KASTAM KANAN WK6',
+    badgeNo: '',
+    email: 'hilfee.mustali@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_04',
+    fullName: 'ABDUL HADI BIN ABDUL SAMAD',
+    grade: 'PEGAWAI KASTAM KANAN TINGGI WK3',
+    badgeNo: '9807',
+    email: 'abd_hadi.samad@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_05',
+    fullName: 'ZULKIFLEE BIN ADENAN',
+    grade: 'PEGAWAI KASTAM KANAN WK2',
+    badgeNo: '9921',
+    email: 'zulkiflee.adenan@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_06',
+    fullName: 'UNDY ANAK JALAI',
+    grade: 'PEGAWAI KASTAM KANAN WK2',
+    badgeNo: '10551',
+    email: 'undy.jalai@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_07',
+    fullName: 'NORHASYIMAH BINTI SOPIN',
+    grade: 'PEGAWAI KASTAM KANAN WK2',
+    badgeNo: '12609',
+    email: 'nhasyimah.sopin@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_08',
+    fullName: 'MOHAMAD FAIZZIL BIN AFFANDI',
+    grade: 'PEGAWAI KASTAM KANAN WK2',
+    badgeNo: '13308',
+    email: 'faizzil.affandi@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_09',
+    fullName: 'KAZA BIN MADI',
+    grade: 'PEMBANTU PENGUASA KASTAM WK1',
+    badgeNo: '15982',
+    email: 'kaza.madi@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_10',
+    fullName: 'SITI FARIZA BINTI KASIMAN',
+    grade: 'PEMBANTU PENGUASA KASTAM WK1',
+    badgeNo: '15989',
+    email: 'fariza.kasiman@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_11',
+    fullName: 'NOR SUHANA BINTI SUALIN',
+    grade: 'PEMBANTU PENGUASA KASTAM WK1',
+    badgeNo: '17108',
+    email: 'suhanasualin@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_12',
+    fullName: 'MOHAMAD TAUFIQ BIN SULAIMAN',
+    grade: 'PEMBANTU PENGUASA KASTAM WK1',
+    badgeNo: '17110',
+    email: 'taufiq@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_13',
+    fullName: 'MAS SAWAHNI BINTI MUNDING',
+    grade: 'PEMBANTU PENGUASA KASTAM WK1',
+    badgeNo: '17111',
+    email: 'sawahni.munding@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_14',
+    fullName: 'MOHD HASRUL LIZAM BIN HASSAN',
+    grade: 'PEMBANTU PENGUASA KASTAM WK1',
+    badgeNo: '17121',
+    email: 'hasrullizam.hassan@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_15',
+    fullName: 'MOHAMAD IZZAT AMIR BIN ROZAIDI',
+    grade: 'PEMBANTU PENGUASA KASTAM WK1',
+    badgeNo: '17137',
+    email: 'izzat.amir@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_16',
+    fullName: 'AZIZI SYAMINI SAHRAN BIN ADENAN',
+    grade: 'PEMBANTU PENGUASA KASTAM WK1',
+    badgeNo: '17143',
+    email: 'azizi.adenan@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_17',
+    fullName: 'NASRUL BIN ABDULLAH',
+    grade: 'PEMBANTU PENGUASA KASTAM WK1',
+    badgeNo: '19288',
+    email: 'nasrul.abdullah@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_18',
+    fullName: 'NICHOLAS BANAI',
+    grade: 'PEMBANTU PENGUASA KASTAM WK1',
+    badgeNo: '19290',
+    email: 'nicholas.banai@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+  {
+    id: 'off_19',
+    fullName: 'NURUL FARIHA BINTI BAKAR',
+    grade: 'PEMBANTU PENGUASA KASTAM WK1',
+    badgeNo: '19396',
+    email: 'fariha.bakar@customs.gov.my',
+    role: 'PEGAWAI',
+  },
+];

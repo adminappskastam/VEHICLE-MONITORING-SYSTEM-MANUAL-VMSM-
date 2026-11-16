@@ -1,0 +1,118 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Safety Net: Default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null && request.auth.token.email_verified == true;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.email == 'admin.apps.kastam@gmail.com';
+    }
+
+    function isValidVehicleLog(data) {
+      return data.keys().hasAll([
+        'direction',
+        'boothNo',
+        'plateNo',
+        'notes',
+        'eventTimestamp',
+        'officerName',
+        'createdBy',
+        'createdByEmail',
+        'createdAt',
+        'updatedAt'
+      ])
+      && data.keys().hasOnly([
+        'direction',
+        'boothNo',
+        'plateNo',
+        'notes',
+        'eventTimestamp',
+        'officerName',
+        'createdBy',
+        'createdByEmail',
+        'createdAt',
+        'updatedAt'
+      ])
+      && data.direction is string
+      && (data.direction == 'IN' || data.direction == 'OUT')
+      && data.boothNo is string
+      && (
+        (data.direction == 'IN' && data.boothNo in ['5', '6', '7', '8', '9', '10']) ||
+        (data.direction == 'OUT' && data.boothNo in ['1', '2', '3', '4'])
+      )
+      && data.plateNo is string
+      && data.plateNo.size() >= 1
+      && data.plateNo.size() <= 64
+      && data.notes is string
+      && data.notes.size() <= 200
+      && data.eventTimestamp is string
+      && data.eventTimestamp.size() >= 10
+      && data.eventTimestamp.size() <= 40
+      && data.officerName is string
+      && data.officerName.size() <= 160
+      && data.createdBy is string
+      && data.createdBy.size() >= 1
+      && data.createdBy.size() <= 128
+      && data.createdByEmail is string
+      && data.createdByEmail.size() <= 160
+      && data.createdAt is timestamp
+      && data.updatedAt is timestamp;
+    }
+
+    match /vehicleLogs/{logId} {
+      allow get: if isValidId(logId)
+        && isSignedIn()
+        && (existing().createdBy == request.auth.uid || isAdmin());
+
+      allow list: if isSignedIn()
+        && (existing().createdBy == request.auth.uid || isAdmin());
+
+      allow create: if isValidId(logId)
+        && isSignedIn()
+        && isValidVehicleLog(incoming())
+        && incoming().createdBy == request.auth.uid
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+
+      allow update: if isValidId(logId)
+        && isSignedIn()
+        && isValidVehicleLog(incoming())
+        && (existing().createdBy == request.auth.uid || isAdmin())
+        && incoming().createdBy == existing().createdBy
+        && incoming().createdByEmail == existing().createdByEmail
+        && incoming().officerName == existing().officerName
+        && incoming().direction == existing().direction
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly([
+          'boothNo',
+          'plateNo',
+          'notes',
+          'eventTimestamp',
+          'updatedAt'
+        ]);
+
+      allow delete: if isValidId(logId)
+        && isSignedIn()
+        && (existing().createdBy == request.auth.uid || isAdmin());
+    }
+  }
+}
